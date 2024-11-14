@@ -1,0 +1,16 @@
+/* Menambahkan efek hover pada Card */
+.card:hover {
+    transform: translateY(-5px); /* Mengangkat kartu sedikit */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #333;
+  }

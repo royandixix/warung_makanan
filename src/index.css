@@ -1,13 +1,72 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* NavbarComponent.css */
+.custom-navbar {
+  background: linear-gradient(135deg, #3a6186, #89253e);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff !important;
+}
+
+.nav-link-custom {
+  color: #ffffffcc !important;
+  margin-right: 10px;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover {
+  color: #ffda79 !important;
+}
+
+.nav-dropdown-custom .dropdown-toggle::after {
+  color: #ffffffcc;
+}
+
+.nav-dropdown-custom .dropdown-menu {
+  background-color: #3a6186;
+  border-radius: 5px;
+}
+
+.nav-dropdown-custom .dropdown-item {
+  color: #ffffffcc;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-dropdown-custom .dropdown-item:hover {
+  background-color: #ffda79;
+  color: #3a6186;
+}
+
+/* listCategories.css */
+.category-aktif {
+  background-color: #ffda79; /* Warna background yang lebih mencolok */
+  color: #ffffff; /* Warna teks yang kontras */
+}
+
+.list-group-item {
+  background-color: #f8f9fa; /* Warna default untuk ListGroup */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-image: linear-gradient(135deg, #3a6186, #89253e); /* Warna gradasi saat hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #efefef;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

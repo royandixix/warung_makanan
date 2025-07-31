@@ -20,28 +20,38 @@ export default class App extends Component {
     this.fetchProducts();
   }
 
-  fetchProducts = () => {
-    axios
-      .get(`${API_URL}products?category.nama=${this.state.categoriYangDipilih}`)
-      .then((res) => {
-        console.log("Response:", res);
-        this.setState({ menus: res.data });
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
+  // ✅ PERBAIKI INI
+  fetchProducts = async () => {
+    try {
+      const { categoriYangDipilih } = this.state;
+
+      const [productsRes, categoriesRes] = await Promise.all([
+        axios.get(`${API_URL}products`),
+        axios.get(`${API_URL}categories`)
+      ]);
+
+      const products = productsRes.data;
+      const categories = categoriesRes.data;
+
+      // Gabungkan categoryId menjadi category object
+      const menusWithCategory = products.map((product) => {
+        const category = categories.find(cat => cat.id === product.categoryId);
+        return {
+          ...product,
+          category: category || { nama: "Tidak diketahui" }
+        };
       });
 
-      axios
-      .get(`${API_URL}products?category.nama=${this.state.categoriYangDipilih}`)
-      .then((res) => {
-        console.log("Response:", res);
-        this.setState({ menus: res.data });
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-   
+      // Filter sesuai kategori yang dipilih
+      const filteredMenus = menusWithCategory.filter(
+        (menu) => menu.category.nama.toLowerCase() === categoriYangDipilih.toLowerCase()
+      );
 
+      this.setState({ menus: filteredMenus });
+
+    } catch (error) {
+      console.error("Gagal mengambil data:", error);
+    }
   };
 
   changeCategory = (value) => {

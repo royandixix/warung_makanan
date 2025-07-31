@@ -9,6 +9,7 @@ import {
   faCoffee,
   faCheese,
 } from "@fortawesome/free-solid-svg-icons";
+import { makeInstaller } from "install";
 
 const Icon = ({ nama }) => {
   if (nama === "Makanan")
@@ -27,7 +28,7 @@ export default class ListCategories extends Component {
     };
   }
   
-  con
+
 
   componentDidMount() {
     axios
@@ -75,7 +76,6 @@ export default class ListCategories extends Component {
     );
   }
 }
-
 
 
 export function createListCategories(props) {

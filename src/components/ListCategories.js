@@ -6,7 +6,7 @@ import { API_URL } from "../utils/constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUtensils,
-  faCoffee,
+  faCoffee, 
   faCheese,
 } from "@fortawesome/free-solid-svg-icons";
 import { makeInstaller } from "install";
@@ -27,8 +27,6 @@ export default class ListCategories extends Component {
       categories: [],
     };
   }
-  
-
 
   componentDidMount() {
     axios
@@ -76,7 +74,6 @@ export default class ListCategories extends Component {
     );
   }
 }
-
 
 export function createListCategories(props) {
   return new ListCategories(props);

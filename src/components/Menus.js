@@ -2,20 +2,19 @@ import React from "react";
 import { Col, Card } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
 
-// Mapping kategori berdasarkan ID
+// Fallback kategori berdasarkan ID jika relasi tidak ada
 const categoryMap = {
   1: "makanan",
   2: "minuman",
-  3: "cemilan"
+  3: "cemilan",
 };
 
 const Menus = ({ menu, masukKeranjang }) => {
-  // Ambil nama kategori: dari objek category atau fallback ke mapping
-  const categoryName = menu?.category?.nama?.toLowerCase() || categoryMap[menu.categoryId] || "default";
+  const categoryName =
+    menu?.category?.nama?.toLowerCase() || categoryMap[menu.categoryId] || "default";
 
-  // Path gambar lengkap
   const imagePath = menu?.gambar
-    ? `/images/${categoryName}/${menu.gambar}`
+    ? `/images/${categoryName}/${menu.gambar.trim()}`
     : "/images/default.jpg";
 
   return (
@@ -27,7 +26,7 @@ const Menus = ({ menu, masukKeranjang }) => {
       className="mb-4"
       onClick={() => masukKeranjang(menu)}
     >
-      <Card className="shadow-sm border-0">
+      <Card className="shadow-sm border-0 h-100 cursor-pointer">
         <Card.Img
           variant="top"
           src={imagePath}
@@ -40,12 +39,13 @@ const Menus = ({ menu, masukKeranjang }) => {
             objectFit: "cover",
           }}
         />
-        <Card.Body>
-          <Card.Title className="text-center">
-            {menu.nama} <strong>{menu.kode}</strong>
+        <Card.Body className="d-flex flex-column justify-content-between">
+          <Card.Title className="text-center fw-bold">
+            {menu.nama} <br />
+            <small className="text-muted">({menu.kode})</small>
           </Card.Title>
-          <Card.Text className="text-center">
-            Rp.{numberWithCommas(menu.harga)}
+          <Card.Text className="text-center text-success fs-5">
+            Rp. {numberWithCommas(menu.harga)}
           </Card.Text>
         </Card.Body>
       </Card>

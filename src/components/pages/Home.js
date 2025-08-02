@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import { Hasil, ListCategories, NavbarComponent, Menus } from "../components";
-import { API_URL } from "../utils/constants";
+import Hasil from "../Hasil";
+import ListCategories from "../ListCategories";
+import Menus from "../Menus";
+import { API_URL } from "../../utils/constants";
 import axios from "axios";
 import swal from "sweetalert";
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       menus: [],
       categoriYangDipilih: "Makanan",
       keranjangs: [],
     };
   }
+
+  //   masukan data di bagian inin
 
   componentDidMount() {
     this.fetchProducts();
@@ -40,7 +44,9 @@ export default class Home extends Component {
       const categories = categoriesRes.data;
 
       const menusWithCategory = products.map((product) => {
-        const category = categories.find((cat) => cat.id === product.categoryId);
+        const category = categories.find(
+          (cat) => cat.id === product.categoryId
+        );
         return {
           ...product,
           category: category || { nama: "Tidak diketahui" },
@@ -49,8 +55,7 @@ export default class Home extends Component {
 
       const filteredMenus = menusWithCategory.filter(
         (menu) =>
-          menu.category.nama.toLowerCase() ===
-          categoriYangDipilih.toLowerCase()
+          menu.category.nama.toLowerCase() === categoriYangDipilih.toLowerCase()
       );
 
       this.setState({ menus: filteredMenus });
@@ -134,8 +139,7 @@ export default class Home extends Component {
     const { menus, categoriYangDipilih, keranjangs } = this.state;
 
     return (
-      <div className="App">
-        <NavbarComponent />
+      <div sName="App">
         <div className="mt-3">
           <Container>
             <Row>
@@ -148,7 +152,7 @@ export default class Home extends Component {
               {/* Daftar produk */}
               <Col>
                 <h4>
-                  <strong>Daftar Produk </strong>
+                  <span className="fw-bold">Daftar Produk</span>
                 </h4>
                 <hr />
                 <Row>
@@ -175,4 +179,3 @@ export default class Home extends Component {
     );
   }
 }
- 
